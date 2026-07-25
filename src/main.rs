@@ -3,13 +3,20 @@ use colored::Colorize;
 use hashcheck::cli::{Args, Algorithm};
 use hashcheck::hasher;
 use clap::Parser;
+
+pub fn is_valid_params()-> bool
+{
+    return true;
+}
+
 fn main() -> Result<()> {
     let args = Args::parse();
+    // println!("helooooooooooooooooo");
     let computed_hash = if args.stdin{
         hasher::hash_stdin(&args.algo)?
     }
     else {
-        hasher::hash_file(&args.file, &args.algo)?
+        hasher::hash_file(args.file.as_ref().unwrap(), &args.algo)?
     };
 
     let algo_name = match args.algo
@@ -28,7 +35,9 @@ fn main() -> Result<()> {
         let expected_hash = expected.trim().to_lowercase();
         let computed_verify = computed_hash.to_lowercase();
 
-        println!("File {}",&args.file);
+        if let Some(file_name) = &args.file {
+            println!("File {}", file_name);
+        }
         println!("Algo name {}", algo_name);
         println!("Computed hash :({})",computed_verify);
         println!("Expected hash :({})",expected_hash);
