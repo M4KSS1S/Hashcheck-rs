@@ -1,4 +1,5 @@
 use clap::{Parser, ValueEnum};
+// super::tests::test_numbers;
 
 #[derive(Parser)]
 #[command (name="hashcheck")]

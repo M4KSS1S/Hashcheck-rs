@@ -3,15 +3,18 @@ use colored::Colorize;
 use hashcheck::cli::{Args, Algorithm};
 use hashcheck::hasher;
 use clap::Parser;
+use std::error::Error;
 
 pub fn is_valid_params()-> bool
 {
     return true;
 }
 
-fn main() -> Result<()> {
+fn main() -> Result<(), Box<dyn Error>> {
     let args = Args::parse();
     // println!("helooooooooooooooooo");
+    // let num = tests::test_numbers(&args);
+    // print!("{num}\n");
     let computed_hash = if args.stdin{
         hasher::hash_stdin(&args.algo)?
     }
