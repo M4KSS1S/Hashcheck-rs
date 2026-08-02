@@ -1,4 +1,4 @@
-// use anyhow::{Context, Result};
+use anyhow::{Context, Result};
 use sha2::{Sha256, Digest};
 use std::io::{self, Read, ErrorKind};
 use std::fs::File;

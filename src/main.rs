@@ -12,9 +12,6 @@ pub fn is_valid_params()-> bool
 
 fn main() -> Result<(), Box<dyn Error>> {
     let args = Args::parse();
-    // println!("helooooooooooooooooo");
-    // let num = tests::test_numbers(&args);
-    // print!("{num}\n");
     let computed_hash = if args.stdin{
         hasher::hash_stdin(&args.algo)?
     }
